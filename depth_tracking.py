@@ -15,7 +15,7 @@ def load_all_frames(path, frames=frames, height=height, width=width):
 raw = load_all_frames(datapath)
 
 def track_position(cframe):
-    """return xyz position of 2D projected center of detected object"""
+    """return xy position of 2D projected center of detected object"""
     labeled_array, num_features = ndimage.label(cframe>=np.percentile(cframe, 99.5))
     m = [np.sum(labeled_array==i+1) for i in range(num_features)]
     x,y = ndimage.measurements.center_of_mass(cframe, labels=labeled_array, index=m.index(max(m))+1)
